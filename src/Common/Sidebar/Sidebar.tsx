@@ -6,12 +6,12 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 const Sidebar = () => {
     return (
-        <nav className={`relative hidden h-screen lg:block w-72 bg-second`}>
-            <div className='space-y-4 text-white h-full p-4'>
-                <div className='px-3 py-2 bg-primary h-full rounded-2xl flex flex-col justify-between'>
-                    <div className='space-y-1'>
+        <nav className={`relative hidden h-screen lg:block w-80 bg-second`}>
+            <div className='space-y-4 text-white h-full'>
+                <div className='py-2 nav-bg h-full flex flex-col justify-between items-center'>
+                    <div className='space-y-1 w-full'>
                         <div className='grid items-start gap-10 py-4'>
-                            <div className='w-[140px] m-auto'>
+                            <div className='w-[160px] ml-5'>
                                 <img src={Logo_QCC} alt='qcc_logo'></img>
                             </div>
                             <div className='py-5'>
@@ -19,16 +19,15 @@ const Sidebar = () => {
                                     {/* <div>
                                         <h2>Menu</h2>
                                     </div> */}
-                                    <div className=''>
+                                    <div className='pl-3'>
                                         <DashboardNav items={nav} />
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className='pb-5'>
-                        <div className='w-full h-[50px] bg-pink rounded-2xl cursor-pointer'>
+                        <div className='w-full h-[50px] bg-pink rounded-2xl shadow-xl cursor-pointer px-6'>
                             <div className='flex w-full h-full items-center justify-center gap-2'>
                                 <div>
                                     <AiOutlineLogout size={24}/>

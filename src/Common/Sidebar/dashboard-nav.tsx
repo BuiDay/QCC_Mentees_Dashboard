@@ -36,13 +36,13 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ items, setOpen }) => {
               >
                 <span
                   className={cn(
-                    'group flex items-center rounded-[5px] px-3 py-2 text-sm font-medium hover:bg-white group',
-                    path.pathname === item.url ? 'bg-white' : 'transparent',
+                    'group flex items-center rounded-tl-[40px] rounded-bl-[40px] px-[30px] py-4 text-sm font-medium',
+                    path.pathname === item.url ? 'bg-white shadow-2xl nav-active' : 'transparent',
                     // item.disabled && 'cursor-not-allowed opacity-80'
                   )}
                 >
                   <Icon className={cn('mr-2 h-4 w-4',path.pathname === item.url ? 'text-pink ' : 'text-white group-hover:text-pink')} />
-                  <span className={cn('text-[16px]', path.pathname === item.url ? 'text-pink ' : 'text-white group-hover:text-pink')}>{item.title}</span>
+                  <span className={cn('text-[16px] font-semibold', path.pathname === item.url ? 'text-pink ' : 'text-white group-hover:text-pink')}>{item.title}</span>
                 </span>
               </Link>
           )

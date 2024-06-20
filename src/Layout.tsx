@@ -11,8 +11,10 @@ const Layout = () => {
             <div className='flex h-screen overflow-hidden z-4'>
               {/* <SidebarProfile />   */}
               <Sidebar />
-              <main className='w-full p-4 h-full bg-second'>
-                <Outlet />
+              <main className='w-full h-full'>
+                <div className='bg-white w-full h-full rounded-tl-[40px] rounded-bl-[40px]'>
+                  <Outlet />
+                </div>
               </main>
             </div>
           </div>
