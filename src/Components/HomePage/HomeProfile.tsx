@@ -8,7 +8,7 @@ const HomeProfile = () => {
 
   return (
       <div className='h-full grid grid-rows-5 gap-4'>
-        <div className='flex flex-col items-center bg-white p-4 rounded-2xl row-span-2 shadow-md'>
+        <div className='flex flex-col items-center bg-white/[0.07]  p-4 rounded-2xl row-span-2 shadow-primary'>
           <div className='relative'>
             <div className='h-[150px] w-[150px] rounded-full border-[3px] overflow-hidden'>
               <div className=''>
@@ -23,25 +23,25 @@ const HomeProfile = () => {
           </div>
           <div className='w-full px-5'>
             <div className='text-center'>
-              <h1 className='text-[20px] text-pink font-semibold'>Bùi Văn Duy Nhất</h1>
-              <p className='text-[12px] text-gray-500'>buivanduynhat@gmail.com</p>
+              <h1 className='text-[20px] text-white font-semibold'>Bùi Văn Duy Nhất</h1>
+              <p className='text-[12px] text-white'>buivanduynhat@gmail.com</p>
               <div className='w-full h-[1px] bg-pink my-3'></div>
               <div className='flex flex-col mt-3 gap-1'>
                 <div className='flex items-center justify-center gap-1'>
                   <span className='text-[14px]'><IoIosPhonePortrait color='#FE568E' size={18}/></span>
-                  <span className='text-[14px] text-gray-500'>0933804785</span>
+                  <span className='text-[14px] text-white'>0933804785</span>
                 </div>
                 <div className='flex items-center justify-center gap-1'>
                   <span className='text-[14px]'><CiLocationOn color='#FE568E' size={18}/></span>
-                  <span className='text-[14px] text-gray-500'>Quận 5, TP HCM</span>
+                  <span className='text-[14px] text-white'>Quận 5, TP HCM</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='bg-white rounded-2xl row-span-3 overflow-hidden shadow-md'>
+        {/* <div className='bg-white rounded-2xl row-span-3 overflow-hidden shadow-md'>
           <LeaderBoard />
-        </div>
+        </div> */}
       </div>
   );
 };

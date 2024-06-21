@@ -7,6 +7,11 @@ export const nav = [
         url:"/",
         icon:"Dashboard"
     },
+    // {
+    //     title:"Khóa học",
+    //     url:"/projects",
+    //     icon:"Project"
+    // },
     {
         title:"Dự án",
         url:"/projects",

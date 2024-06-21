@@ -34,10 +34,11 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ items, setOpen }) => {
                 }}
                 key={index}
               >
+               
                 <span
                   className={cn(
-                    'group flex items-center rounded-tl-[40px] rounded-bl-[40px] px-[30px] py-4 text-sm font-medium',
-                    path.pathname === item.url ? 'bg-white shadow-2xl nav-active' : 'transparent',
+                    'group flex items-center rounded-[40px] px-[30px] py-4 text-sm font-medium',
+                    path.pathname === item.url ? 'bg-white shadow-2xl' : 'transparent',
                     // item.disabled && 'cursor-not-allowed opacity-80'
                   )}
                 >
@@ -53,3 +54,4 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ items, setOpen }) => {
 }
 
 export default DashboardNav
+ //rounded-tl-[40px] rounded-bl-[40px

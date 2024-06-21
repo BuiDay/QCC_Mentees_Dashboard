@@ -22,12 +22,12 @@ const RadarChart = () => {
             opacity: 0.5,
             colors: []
         },
-        yaxis: {
-            stepSize: 20
-        },
-        xaxis: {
-            categories: ['January', 'February', 'March', 'April', 'May', 'June']
-        }
+        // yaxis: {
+        //     stepSize: 20
+        // },
+        // xaxis: {
+        //     categories: ['January', 'February', 'March', 'April', 'May', 'June']
+        // }
     }
     return (
         <div className='flex w-full h-full justify-center items-center'>

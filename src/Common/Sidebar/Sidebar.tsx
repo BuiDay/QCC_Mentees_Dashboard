@@ -6,9 +6,9 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 const Sidebar = () => {
     return (
-        <nav className={`relative hidden h-screen lg:block w-80 bg-second`}>
-            <div className='space-y-4 text-white h-full'>
-                <div className='py-2 nav-bg h-full flex flex-col justify-between items-center'>
+        <nav className={`relative hidden h-screen lg:block w-80`}>
+            <div className='space-y-4 text-white h-full p-4'>
+                <div className='py-2 rounded-3xl h-full flex flex-col justify-between items-center'>
                     <div className='space-y-1 w-full'>
                         <div className='grid items-start gap-10 py-4'>
                             <div className='w-[160px] ml-5'>
