@@ -1,25 +1,32 @@
 import express from "express";
+const multer = require('multer');
 import { authorizeRole, isAuthenticated } from "../middleware/isAuth";
-import { createMentee, getAllMentee, getEvaluationByMentee, getInfoByMentee, getInfoCourseByMenteeGenerateCode, getMenteeById, getMenteeCourses, updateAvatarMentee, updateInfoByMentee, updateInfoGenerateCode, updateInfoMentee } from "../controllers/mentee.controller";
-
-
+import { getAssignmentForMentee, rankingOfMentee, submissionByMentee } from "../controllers/mentee.controller";
 const router = express.Router();
+const fs = require('fs');
 
-router.post('/create',isAuthenticated,authorizeRole("admin","mentor"),createMentee) 
-router.put('/update',isAuthenticated,authorizeRole("admin","mentor"),updateInfoMentee)
-router.get('/',isAuthenticated,authorizeRole("admin"),getAllMentee)
-router.get('/:id',isAuthenticated,authorizeRole("admin",'mentor',"moderator"),getMenteeById) 
-router.get('/mentee-course/:id',isAuthenticated,authorizeRole("admin",'mentor',"moderator"),getMenteeCourses) 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const date = `${new Date().getDate()}-${new Date().getMonth() + 1}-${new Date().getFullYear()}`
+        const dir = `uploads/submission/${date}`;
 
+        // Kiểm tra và tạo thư mục nếu chưa tồn tại
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
 
-router.post('/generate-code',updateInfoGenerateCode)
-router.get('/get-info-by-mentee/:token',getInfoByMentee)
-router.put('/update-info-by-mentee/:token',updateInfoByMentee)
-router.post('/update-avatar/:menteeId', updateAvatarMentee)
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        cb(null,file.originalname);
+    }
+});
 
-router.post('/search-evaluation-generate-code',getInfoCourseByMenteeGenerateCode)
-router.get('/search-evaluation/:token',getEvaluationByMentee)
+const upload = multer({ storage: storage });
 
+router.post('/submissions', upload.single('file'),submissionByMentee) 
+router.get('/assignment',getAssignmentForMentee) 
+router.get('/ranking',rankingOfMentee) 
 
 
 

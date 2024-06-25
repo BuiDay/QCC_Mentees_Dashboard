@@ -1,9 +1,7 @@
 import { NextFunction,Response,Request } from "express";
-import { CatchAsyncError } from "../../utils/catchAsyncErrors";
-import ErrorHandler from "../../utils/errorHandler";
-import { awardTopMenteeService, createRewardService } from "../../services/v2/reward.service";
-
-
+import { CatchAsyncError } from "../utils/catchAsyncErrors";
+import ErrorHandler from "../utils/errorHandler";
+import { awardTopMenteeService, createRewardService } from "../services/reward.service";
 
 export const createReward = CatchAsyncError(
     async (req: Request, res: Response, next: NextFunction) => {

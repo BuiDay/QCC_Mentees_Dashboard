@@ -1,25 +1,13 @@
-import express from 'express';
-import { registrationUser,activateUser, loginUser,updateAvatar,logoutUser,getUserById,updateAccessToken, updateUserInfo, updatePassword, registerEmployee, deleteUser } from '../controllers/auth.controller';
-import { authorizeRole, isAuthenticated } from '../middleware/isAuth';
+import express from "express";
+import { forgotPassword, loginUser, resetPassword, updateAccessToken } from "../controllers/auth.controller";
+
 const router = express.Router();
 
-router.post('/registration',registrationUser)
-router.post('/registration-employee',isAuthenticated,authorizeRole("admin"),registerEmployee)
-
-router.post('/active-user',activateUser)
-
-router.post('/login-user',loginUser)
-
-router.get('/logout-user',isAuthenticated,logoutUser)
+router.get('/forgot-password',forgotPassword) 
+router.post('/reset-password',resetPassword) 
+router.post('/login-user',loginUser) 
 
 router.get('/refresh-token',updateAccessToken)
 
-router.get('/get-user-by-id',isAuthenticated, getUserById)
+export default router
 
-router.put('/update-user-info',isAuthenticated,authorizeRole("admin"), updateUserInfo)
-router.delete('/',isAuthenticated,authorizeRole("admin"), deleteUser)
-
-router.put('/update-user-password',isAuthenticated, updatePassword)
-router.post('/update-user-avatar',isAuthenticated, updateAvatar)
-
-export default router 

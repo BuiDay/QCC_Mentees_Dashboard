@@ -1,6 +1,7 @@
 import mongoose, { Model, Schema, Document } from "mongoose";
 require('dotenv').config();
-
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 const emailRegexPattern: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export interface IMentee extends Document {
@@ -12,6 +13,8 @@ export interface IMentee extends Document {
     comparePassword:(password:string) => Promise<boolean>;
     SignAccessToken:()=>string;
     SignRefreshToken:()=>string;
+    passwordResetToken:string,
+    passwordResetExpires:number,
     gender: string,
     address: {
         distric: string,
@@ -58,6 +61,12 @@ const menteeSchema: Schema<IMentee> = new mongoose.Schema({
             message: "please enter a valid email",
         },
         unique: true
+    },
+    password:{
+        type:String,
+        required:[true, "Please enter your password"],
+        minlength:[6,"Password must be at least 6 characters"],
+        select:false
     },
     menteeId: {
         type: String,
@@ -126,10 +135,40 @@ const menteeSchema: Schema<IMentee> = new mongoose.Schema({
         default: false
     },
     updateInfoToken: String,
-    updateInfoExpires: Date
+    updateInfoExpires: Date,
+    passwordResetToken:{
+        type:String
+    },
+    passwordResetExpires:{
+        type:Number
+    },
 }, { timestamps: true });
 
 
-const menteeModel: Model<IMentee> = mongoose.model("Mentee", menteeSchema);
 
+//hasd password before saving
+menteeSchema.pre<IMentee>("save",async function(next){
+    if(!this.isModified("password")){
+        next();
+    }
+    this.password = await bcrypt.hash(this.password,10);
+    next();
+})
+
+//sign access token
+menteeSchema.methods.SignAccessToken = function(){
+    return jwt.sign({id:this._id},process.env.ACCESS_TOKEN || "",{expiresIn:"4m"})
+}
+
+//sign refresh token
+menteeSchema.methods.SignRefreshToken = function(){
+    return jwt.sign({id:this._id},process.env.REFRESH_TOKEN || "",{expiresIn:"5d"})
+}
+
+//compare password
+menteeSchema.methods.comparePassword = async function name(enterPassword:string):Promise<boolean> {
+    return await bcrypt.compare(enterPassword, this.password)
+}
+
+const menteeModel: Model<IMentee> = mongoose.model("Mentee", menteeSchema);
 export default menteeModel;

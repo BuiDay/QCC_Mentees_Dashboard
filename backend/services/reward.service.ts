@@ -1,8 +1,8 @@
 import { NextFunction, Response, Request } from "express";
-import ErrorHandler from "../../utils/errorHandler";
-import rewardModel from "../../models/reward.model";
-import menteeCourseModel from "../../models/menteeCourse.model";
-import { bestStudent, findTopStudent, findTopStudentByDesign, findTopStudentByIdea, findTopStudentByInsight, findTopStudentByProposal, findTopStudentByResearch } from "../../utils/reward.generate";
+import ErrorHandler from "../utils/errorHandler";
+import rewardModel from "../models/reward.model";
+import menteeCourseModel from "../models/menteeCourse.model";
+import { bestStudent, findTopStudent, findTopStudentByDesign, findTopStudentByIdea, findTopStudentByInsight, findTopStudentByProposal, findTopStudentByResearch } from "../utils/reward.generate";
 
 export const createRewardService = async (
     data,

@@ -1,5 +1,5 @@
 import { isTypeQueryNode } from "typescript";
-import { IUser } from "../models/user.model";
+import { IMentee } from "../models/mentee.model";
 import { Response } from "express";
 
 require('dotenv').config();
@@ -30,7 +30,7 @@ export const refreshTokenOptions: ITokenOptions = {
     sameSite: 'lax'
 }
 
-export const sendToken = (user: IUser, statusCode: number, res:Response) => {
+export const sendToken = (user: IMentee, statusCode: number, res:Response) => {
     const accessToken = user.SignAccessToken();
     const refreshToken = user.SignRefreshToken();
 
